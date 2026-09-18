@@ -1,0 +1,13 @@
+import { cp, mkdir, rm, readFile, writeFile } from 'node:fs/promises';
+import { seo } from '../src/config.js';
+import { esc } from '../src/components/ui.js';
+import { renderPage } from '../src/page.js';
+await rm('dist', { recursive: true, force: true });
+await mkdir('dist', { recursive: true });
+await cp('src', 'dist', { recursive: true });
+await cp('public', 'dist', { recursive: true });
+let template=await readFile('src/index.html','utf8');
+template=template.replace(/<title>.*?<\/title>/,`<title>${esc(seo.title)}</title>`);
+for (const [attribute,key,content] of [['name','description',seo.description],['property','og:title',seo.socialTitle],['property','og:description',seo.socialDescription]]) template=template.replace(new RegExp(`<meta ${attribute}="${key}" content="[^"]*">`),`<meta ${attribute}="${key}" content="${esc(content)}">`);
+await writeFile('dist/index.html',template.replace('<div id="app"></div>',`<div id="app">${renderPage()}</div>`).replace(/<noscript>[\s\S]*?<\/noscript>/,''));
+console.log('Production build complete: dist/ — full HTML prerendered for SEO.');
