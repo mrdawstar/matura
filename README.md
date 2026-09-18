@@ -13,10 +13,13 @@ Lekki landing page: semantyczny HTML, CSS i modułowy JavaScript bez zależnośc
 - `src/components/hero.js`: nawigacja i hero.
 - `src/components/story.js`: narracja, program, materiały, prowadząca i prawdziwe opinie.
 - `src/components/offer.js`: oferta, FAQ, końcowe CTA i stopka.
-- `src/styles.css`: system wizualny i responsywność.
+- `src/styles.css`: zachowany system hero, nawigacja i wspólne kontrolki.
+- `src/styles/sections.css`: jasny editorialowy design sekcji poniżej hero i responsywność.
+- `src/styles/materials.css` oraz `src/components/materials.js`: współdzielone ilustracje materiałów.
+- `src/motion.js`: subtelne wejścia i obsługa preferencji ograniczonego ruchu.
 - `src/main.js`: menu, wybór poziomu, dialogi, animacje i sticky CTA.
 - `src/index.html`: metadane oraz szablon dokumentu.
-- `public/images/teacher-hero.webp`, `teacher-about.webp`: zdjęcia. Dla nowego kadru dostosuj CSS `.hero-portrait` i `.teacher-photo img`.
+- `public/images/teacher-hero-lavender.webp`, `teacher-about.webp`: zdjęcia. Dla nowego kadru dostosuj CSS `.hero-portrait > img` i `.teacher-photo img`. Układ oraz dekoracje hero są zachowane; nowy portret ma tylko skalowanie i kadrowanie w dotychczasowej ramce.
 
 Wybrany poziom zmienia etykietę na stronie; nie jest przekazywany do Stripe. Każde CTA zakupowe pobiera ten sam adres z konfiguracji. Nie wykonano rzeczywistego zakupu.
 
@@ -26,4 +29,4 @@ W `src/config.js` wyszukaj `UZUPEŁNIJ`: imię i nazwisko prowadzącej, biografi
 
 ## Zdjęcia
 
-Zdjęcie w hero: wbudowany imagegen, usunięcie tła z dostarczonego `IMG_5322.png`; wynik zoptymalizowany do WebP. Drugie zdjęcie: dostarczony `IMG_3099.png`, bez generowania nowej twarzy. Prompt operacji zapisany w `public/images/portrait-prompt.txt`.
+Zdjęcie w hero: dostarczony `ChatGPT Image Sep 18, 2026, 07_37_19 PM.png`, przekonwertowany do WebP z zachowaniem przezroczystości. Portret nie był regenerowany ani retuszowany; transparentne marginesy kadruje CSS. Drugie zdjęcie: dostarczony `IMG_3099.png`.

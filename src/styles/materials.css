@@ -1,0 +1,362 @@
+.mini-paper {
+  width: 184px;
+  height: 204px;
+  transform: rotate(-9deg);
+  padding: 21px;
+  background: white;
+  box-shadow: 8px 10px 0 #d4c4f5;
+  border: 1px solid #d6c7f3;
+}
+.mini-paper > span {
+  font-size: 6px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+}
+.mini-paper b {
+  font-size: 24px;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  display: block;
+  margin: 12px 0 14px;
+}
+.paper-line {
+  height: 3px;
+  background: #ddd5eb;
+  margin-top: 6px;
+}
+.paper-line.short {
+  width: 75%;
+}
+.mini-paper p {
+  font-size: 9px;
+  margin-top: 15px;
+  color: var(--ink);
+}
+.paper-options {
+  font-size: 8px;
+  display: flex;
+  gap: 8px;
+  margin-top: 9px;
+  align-items: center;
+}
+.paper-options i {
+  width: 9px;
+  height: 9px;
+  border: 1px solid #c4b9d5;
+  border-radius: 50%;
+}
+.paper-options i.selected {
+  background: var(--purple);
+  border-color: var(--purple);
+}
+.paper-tab {
+  position: absolute;
+  right: 27px;
+  bottom: 42px;
+  transform: rotate(5deg);
+  background: var(--lime);
+  padding: 7px 10px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  box-shadow: 2px 3px 0 #17132620;
+}
+.paper-pen {
+  width: 11px;
+  height: 151px;
+  transform: rotate(28deg);
+  background: linear-gradient(90deg, #9473ed, var(--purple) 45%, #4a269e);
+  border-radius: 4px 4px 1px 1px;
+  position: absolute;
+  right: 35px;
+  top: 48px;
+  box-shadow: 5px 4px 6px #17132630;
+}
+.paper-pen::after {
+  content: "";
+  position: absolute;
+  bottom: -13px;
+  border-left: 5px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 14px solid var(--deep);
+}
+.mini-feedback {
+  width: 245px;
+  background: white;
+  border: 1px solid #e0e2db;
+  box-shadow: 6px 8px 0 #d7dccd;
+  transform: rotate(5deg);
+  padding: 19px 22px;
+}
+.mini-feedback > span {
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+.mini-feedback > p {
+  font-size: 21px;
+  line-height: 1.6;
+  margin: 13px 0;
+  color: var(--ink);
+}
+.mini-feedback s {
+  color: #9c7880;
+  text-decoration-thickness: 1px;
+  font-size: 17px;
+}
+.mini-feedback strong {
+  color: var(--purple);
+  background: var(--lavender);
+  padding: 0 4px;
+}
+.mini-feedback > div {
+  font-size: 10px;
+  color: var(--deep);
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  font-weight: 600;
+}
+.mini-feedback > div span {
+  font-size: 8px;
+  font-weight: 400;
+}
+.feedback-badge {
+  position: absolute;
+  bottom: 20px;
+  left: 23px;
+  transform: rotate(-7deg);
+  background: var(--purple);
+  color: white;
+  padding: 9px 14px;
+  font-size: 8px;
+  letter-spacing: 0.6px;
+  font-weight: 600;
+}
+.headphones {
+  position: absolute;
+  top: 35px;
+  right: 33px;
+  width: 100px;
+  height: 105px;
+  transform: rotate(19deg);
+  filter: drop-shadow(5px 6px 3px #17132624);
+}
+.headphones > span {
+  position: absolute;
+  inset: 0 5px 15px;
+  border: 13px solid var(--purple);
+  border-bottom: 0;
+  border-radius: 70px 70px 0 0;
+}
+.headphones i,
+.headphones b {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  width: 27px;
+  height: 49px;
+  background: linear-gradient(90deg, #4a269e, #9674ef);
+  border: 4px solid #4a269e;
+  border-radius: 8px;
+}
+.headphones b {
+  left: auto;
+  right: 0;
+}
+.speaking-bubble {
+  position: absolute;
+  left: 36px;
+  top: 52px;
+  background: white;
+  transform: rotate(-9deg);
+  padding: 14px 22px;
+  border-radius: 15px 15px 15px 2px;
+  font-size: 28px;
+  letter-spacing: -1px;
+  font-weight: 800;
+  color: var(--purple);
+  box-shadow: 5px 6px 0 #dacff1;
+}
+.speaking-response {
+  position: absolute;
+  bottom: 40px;
+  right: 37px;
+  background: var(--lime);
+  transform: rotate(7deg);
+  padding: 10px 25px;
+  border-radius: 15px 15px 2px 15px;
+  font-size: 25px;
+  box-shadow: 4px 5px 0 #b0d65a;
+  font-weight: 600;
+}
+.speaking-response span {
+  margin-left: 15px;
+}
+@media (max-width: 1100px) {
+  .mini-feedback {
+    width: 217px;
+    padding: 17px;
+  }
+  .mini-feedback > p {
+    font-size: 19px;
+  }
+  .speaking-bubble {
+    left: 18px;
+    font-size: 24px;
+  }
+  .speaking-response {
+    right: 25px;
+    font-size: 22px;
+  }
+  .paper-tab {
+    right: 15px;
+    font-size: 7px;
+  }
+}
+@media (max-width: 800px) {
+  .mini-paper {
+    width: 145px;
+    height: 175px;
+    padding: 15px;
+  }
+  .mini-paper b {
+    font-size: 20px;
+  }
+  .mini-paper p {
+    font-size: 8px;
+  }
+  .mini-paper > span {
+    font-size: 5px;
+  }
+  .paper-pen {
+    right: 14px;
+    height: 125px;
+  }
+  .paper-tab {
+    font-size: 6px;
+    bottom: 26px;
+    right: 10px;
+  }
+  .mini-feedback {
+    width: 170px;
+    padding: 15px;
+  }
+  .mini-feedback > p {
+    font-size: 16px;
+  }
+  .mini-feedback s {
+    font-size: 14px;
+  }
+  .mini-feedback > div {
+    font-size: 8px;
+  }
+  .mini-feedback > div span {
+    font-size: 7px;
+  }
+  .feedback-badge {
+    font-size: 6px;
+    left: 14px;
+    bottom: 28px;
+  }
+  .speaking-bubble {
+    left: 13px;
+    font-size: 23px;
+    top: 43px;
+    padding: 12px 17px;
+  }
+  .headphones {
+    right: 19px;
+    width: 76px;
+    height: 85px;
+    top: 50px;
+  }
+  .headphones > span {
+    border-width: 10px;
+  }
+  .headphones i,
+  .headphones b {
+    width: 23px;
+    height: 38px;
+    top: 47px;
+  }
+  .speaking-response {
+    font-size: 21px;
+    right: 19px;
+    bottom: 41px;
+    padding: 10px 16px;
+  }
+}
+@media (max-width: 600px) {
+  .mini-paper {
+    width: 170px;
+    height: 192px;
+    padding: 18px;
+  }
+  .mini-paper b {
+    font-size: 23px;
+  }
+  .mini-paper p {
+    font-size: 9px;
+  }
+  .mini-paper > span {
+    font-size: 6px;
+  }
+  .paper-pen {
+    right: 65px;
+    height: 138px;
+    top: 43px;
+  }
+  .paper-tab {
+    font-size: 8px;
+    right: 45px;
+    bottom: 30px;
+  }
+  .mini-feedback {
+    width: 235px;
+    padding: 20px;
+  }
+  .mini-feedback > p {
+    font-size: 21px;
+  }
+  .mini-feedback s {
+    font-size: 17px;
+  }
+  .mini-feedback > div {
+    font-size: 10px;
+  }
+  .mini-feedback > div span {
+    font-size: 8px;
+  }
+  .feedback-badge {
+    font-size: 8px;
+    left: 28px;
+    bottom: 20px;
+  }
+  .speaking-bubble {
+    left: 38px;
+    top: 39px;
+    font-size: 30px;
+  }
+  .headphones {
+    right: 52px;
+    top: 31px;
+    width: 100px;
+    height: 106px;
+  }
+  .headphones > span {
+    border-width: 13px;
+  }
+  .headphones i,
+  .headphones b {
+    width: 27px;
+    height: 47px;
+    top: 57px;
+  }
+  .speaking-response {
+    font-size: 27px;
+    right: 40px;
+    bottom: 35px;
+    padding: 10px 24px;
+  }
+}
