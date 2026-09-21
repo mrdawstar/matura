@@ -33,26 +33,24 @@ export const course = {
   heroImage: "/images/teacher-hero-lavender.webp",
   aboutImage: "/images/teacher-about.webp",
 };
+export const instagramUrl =
+  "https://www.instagram.com/nika.wise?igsh=MWhjYXg2YWo1NG4wdQ%3D%3D&utm_source=qr";
 export const teacher = {
-  // UZUPEŁNIJ: wyłącznie prawdziwe, zweryfikowane dane prowadzącej.
-  name: "[Imię i nazwisko prowadzącej]",
-  bio: "[Krótki opis prowadzącej — do uzupełnienia]",
-  qualifications: "[Kwalifikacje — do uzupełnienia]",
-  experience: "[Doświadczenie — do uzupełnienia]",
-  quote: "[Osobisty cytat prowadzącej — do uzupełnienia]",
+  name: "Veronika Bubnova",
+  bio: "Języki obce i komunikacja międzynarodowa od zawsze były ogromną częścią mojego życia. Od kilku lat pomagam kursantom mówić swobodnie, pewnie i bez strachu przed popełnianiem błędów.",
+  background:
+    "Ukończyłam studia filologiczne i lingwistyczne, znam 6 języków obcych i pracowałam jako tłumaczka międzynarodowa oraz stewardessa. Wiem, jak wiele daje angielski, z którego naprawdę potrafisz korzystać.",
+  approach:
+    "Razem z moim zespołem nauczycielek pomagamy Ci przygotować się do matury: oswoić arkusze, uporządkować gramatykę, ćwiczyć słuchanie i pisać zgodnie z wymaganiami egzaminu. A przy tym przełamywać barierę w mówieniu — żeby angielski został z Tobą również po maturze.",
 };
-// UZUPEŁNIJ: dodaj wyłącznie autentyczne opinie i wyniki za zgodą autorów.
-export const testimonials = []; // { quote, name, context }
-export const results = []; // { value, label }
 export const legal = {
-  terms: null,
-  privacy: null,
-  contact: null,
-  company: null,
-  // Uzupełnij teksty powyżej albo docelowe adresy dokumentów poniżej.
-  termsUrl: null,
-  privacyUrl: null,
-  contactEmail: null,
+  contact:
+    "Veronika Bubnova\nveronikawise.school@gmail.com\nInstagram: @nika.wise",
+  company:
+    "Veronika Bubnova\nNIP: 5361995484\nTargowa 2\n05-120 Legionowo\nE-mail: veronikawise.school@gmail.com\nInstagram: @nika.wise",
+  termsUrl: "/regulamin.html",
+  privacyUrl: "/polityka-prywatnosci.html",
+  contactEmail: "veronikawise.school@gmail.com",
 };
 export const seo = {
   title: `${course.name} ${course.year} | ${course.price} zł miesięcznie`,

@@ -1,0 +1,210 @@
+.legal-page {
+  background: #fbfaff;
+  color: #20182e;
+  overflow-wrap: break-word;
+}
+.legal-header {
+  max-width: 1240px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 32px;
+  border-bottom: 1px solid #e5deef;
+  gap: 22px;
+}
+.legal-back {
+  color: #6841ce;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.legal-layout {
+  max-width: 1240px;
+  margin: auto;
+  padding: 64px 32px 100px;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 72px;
+}
+.legal-layout aside {
+  position: sticky;
+  top: 28px;
+  align-self: start;
+  max-height: calc(100dvh - 56px);
+  overflow: auto;
+  padding-right: 12px;
+}
+.legal-layout nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.legal-layout nav a:hover {
+  color: #6841ce;
+  text-decoration: underline;
+}
+.legal-other {
+  display: block;
+  color: #6841ce;
+  margin-top: 26px;
+  font-size: 13px;
+}
+.legal-layout h1 {
+  font-size: clamp(32px, 4.5vw, 55px);
+  line-height: 1.12;
+  letter-spacing: -1.6px;
+  margin-top: 20px;
+}
+.legal-intro {
+  border-bottom: 1px solid #e5deef;
+  padding: 24px 0 32px;
+  margin-bottom: 40px !important;
+  color: #61566f;
+}
+.legal-layout article {
+  font-size: 16px;
+  line-height: 1.8;
+  min-width: 0;
+}
+.legal-layout article h2 {
+  font-size: 24px;
+  line-height: 1.35;
+  margin: 44px 0 18px;
+  letter-spacing: -0.6px;
+  scroll-margin-top: 24px;
+}
+.legal-layout article h3 {
+  font-size: 18px;
+  margin: 26px 0 12px;
+  line-height: 1.5;
+}
+.legal-layout article p {
+  margin: 16px 0;
+}
+.legal-layout article ol,
+.legal-layout article ul {
+  padding-left: 25px;
+  margin: 14px 0;
+  list-style: revert;
+}
+.legal-layout article li {
+  margin: 9px 0;
+  padding-left: 4px;
+}
+.legal-layout article a {
+  color: #6841ce;
+  overflow-wrap: anywhere;
+}
+.legal-footer {
+  border-top: 1px solid #e5deef;
+  padding: 28px 24px;
+  text-align: center;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 850px) {
+  .legal-layout {
+    display: block;
+    padding: 32px 24px 64px;
+  }
+  .legal-layout aside {
+    position: static;
+    max-height: none;
+    border-bottom: 1px solid #e5deef;
+    padding: 0 0 28px;
+    margin-bottom: 36px;
+  }
+  .legal-layout nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 20px;
+  }
+  .legal-header {
+    padding: 24px;
+  }
+  .legal-layout h1 {
+    font-size: 38px;
+  }
+}
+@media (max-width: 450px) {
+  .legal-layout {
+    padding-inline: 20px;
+  }
+  .legal-layout nav {
+    display: flex;
+    font-size: 12px;
+    gap: 10px;
+  }
+  .legal-header {
+    padding: 20px;
+    gap: 12px;
+  }
+  .legal-header .brand {
+    font-size: 24px;
+  }
+  .legal-back {
+    font-size: 12px;
+  }
+  .legal-layout h1 {
+    font-size: 32px;
+    letter-spacing: -1px;
+  }
+  .legal-layout article h2 {
+    font-size: 22px;
+  }
+  .legal-layout article {
+    font-size: 15px;
+  }
+  .legal-layout article ol,
+  .legal-layout article ul {
+    padding-left: 20px;
+  }
+}
+@media print {
+  .legal-layout {
+    display: block;
+    padding: 0;
+  }
+  .legal-layout aside,
+  .legal-header,
+  .legal-footer,
+  .legal-back {
+    display: none;
+  }
+  .legal-page {
+    background: white;
+  }
+  .legal-layout article {
+    font-size: 10pt;
+  }
+  .legal-layout h1 {
+    font-size: 22pt;
+  }
+  .legal-layout article h2 {
+    break-after: avoid;
+    font-size: 15pt;
+  }
+  .legal-layout article h3 {
+    break-after: avoid;
+  }
+}
+.legal-header {
+  padding-right: 90px;
+}
+@media (max-width: 450px) {
+  .legal-header {
+    flex-wrap: wrap;
+    padding-right: 80px;
+  }
+  .legal-header .legal-back {
+    flex-basis: 100%;
+  }
+}
+.legal-header {position:sticky;top:0;z-index:30;background:#fbfafff5;backdrop-filter:blur(12px)}
+.legal-layout article h2 {scroll-margin-top:130px}
+.legal-draft-note {padding:16px 20px;border-left:3px solid #6f45e8;background:#eee7ff;font-size:14px;line-height:1.7}

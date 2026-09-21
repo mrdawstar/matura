@@ -1,3 +1,4 @@
+import { star, sparkle } from "./ui.js";
 /** Small educational illustrations, shared by the editorial feature rows. */
 export function Worksheet() {
   return `<div class="material-art paper-art" aria-hidden="true">
@@ -17,6 +18,6 @@ export function Feedback() {
 export function Speaking() {
   return `<div class="material-art speaking-art" aria-hidden="true">
     <div class="headphones"><span></span><i></i><b></b></div>
-    <div class="speaking-bubble">Let’s talk.</div><div class="speaking-response">I think… <span>✦</span></div>
+    <div class="speaking-bubble">Let’s talk.</div><div class="speaking-response">I think… <span>${sparkle}</span></div>
   </div>`;
 }

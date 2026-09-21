@@ -1,3 +1,4 @@
+import { testimonials } from "./testimonials.js";
 import { initSectionMotion } from "./motion.js";
 import { renderPage } from "./page.js";
 import { course, legal, seo } from "./config.js";
@@ -54,9 +55,7 @@ document.querySelectorAll("[data-legal]").forEach((button) =>
   button.addEventListener("click", () => {
     const key = button.dataset.legal;
     document.querySelector("#legal-title").textContent = legalLabels[key];
-    document.querySelector("#legal-content").textContent =
-      legal[key] ||
-      `${legalLabels[key]} — do uzupełnienia przez organizatora kursu przed rozpoczęciem sprzedaży. Dane nie zostały jeszcze udostępnione.`;
+    document.querySelector("#legal-content").textContent = legal[key];
     dialog.showModal();
   }),
 );
@@ -110,3 +109,87 @@ if ("IntersectionObserver" in window) {
   );
   stickyObserver.observe(document.querySelector(".hero-actions"));
 }
+
+// Native scroll snapping works with touch, trackpads and keyboard controls.
+const reviewsTrack = document.querySelector(".reviews-track");
+const reviewCards = [...reviewsTrack.querySelectorAll(".review-card")];
+const reviewPrev = document.querySelector("[data-review-prev]");
+const reviewNext = document.querySelector("[data-review-next]");
+let activeReview = 0;
+function reviewPosition(card) {
+  return Math.min(
+    card.offsetLeft - reviewCards[0].offsetLeft,
+    reviewsTrack.scrollWidth - reviewsTrack.clientWidth,
+  );
+}
+function updateReviewControls() {
+  activeReview = reviewCards.reduce(
+    (best, card, index) =>
+      Math.abs(reviewPosition(card) - reviewsTrack.scrollLeft) <
+      Math.abs(reviewPosition(reviewCards[best]) - reviewsTrack.scrollLeft)
+        ? index
+        : best,
+    0,
+  );
+  reviewPrev.disabled = reviewsTrack.scrollLeft < 2;
+  reviewNext.disabled =
+    reviewsTrack.scrollLeft >=
+    reviewsTrack.scrollWidth - reviewsTrack.clientWidth - 2;
+  document.querySelector(".reviews-count").textContent =
+    `${activeReview + 1} / ${reviewCards.length}`;
+}
+function goToReview(index) {
+  const card =
+    reviewCards[Math.max(0, Math.min(index, reviewCards.length - 1))];
+  reviewsTrack.scrollTo({
+    left: reviewPosition(card),
+    behavior: reduceMotion.matches ? "instant" : "smooth",
+  });
+}
+reviewPrev.addEventListener("click", () => goToReview(activeReview - 1));
+reviewNext.addEventListener("click", () => goToReview(activeReview + 1));
+reviewsTrack.addEventListener("scroll", updateReviewControls, {
+  passive: true,
+});
+reviewsTrack.addEventListener("keydown", (event) => {
+  const keys = {
+    ArrowLeft: activeReview - 1,
+    ArrowRight: activeReview + 1,
+    Home: 0,
+    End: reviewCards.length - 1,
+  };
+  if (event.key in keys) {
+    event.preventDefault();
+    goToReview(keys[event.key]);
+  }
+});
+window.addEventListener("resize", updateReviewControls);
+updateReviewControls();
+
+const reviewDialog = document.querySelector("#review-dialog");
+document.querySelectorAll("[data-review-open]").forEach((button) =>
+  button.addEventListener("click", () => {
+    const review = testimonials[Number(button.dataset.reviewOpen)];
+    document.querySelector("#review-dialog-title").textContent = review.title;
+    const original = document.querySelector("#review-original");
+    original.src = `/images/reviews/${review.id}.webp`;
+    original.alt = `Oryginalna wiadomość kursantki: ${review.title}`;
+    document.querySelector("#review-transcript").textContent = review.quote;
+    reviewDialog.showModal();
+  }),
+);
+reviewDialog
+  .querySelector(".dialog-close")
+  .addEventListener("click", () => reviewDialog.close());
+reviewDialog.addEventListener("click", (event) => {
+  if (event.target === reviewDialog) {
+    const r = reviewDialog.getBoundingClientRect();
+    if (
+      event.clientX < r.left ||
+      event.clientX > r.right ||
+      event.clientY < r.top ||
+      event.clientY > r.bottom
+    )
+      reviewDialog.close();
+  }
+});

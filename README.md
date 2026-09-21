@@ -9,7 +9,7 @@ Lekki landing page: semantyczny HTML, CSS i modułowy JavaScript bez zależnośc
 
 ## Edycja
 
-- `src/config.js`: cena, jeden link Stripe, poziomy, zawartość pakietu, zdjęcia, dane prowadzącej, opinie, wyniki i dane prawne.
+- `src/config.js`: cena, jeden link Stripe, poziomy, zawartość pakietu, zdjęcia, dane prowadzącej, kontakt i odnośniki prawne.
 - `src/components/hero.js`: nawigacja i hero.
 - `src/components/story.js`: narracja, program, materiały, prowadząca i prawdziwe opinie.
 - `src/components/offer.js`: oferta, FAQ, końcowe CTA i stopka.
@@ -23,9 +23,18 @@ Lekki landing page: semantyczny HTML, CSS i modułowy JavaScript bez zależnośc
 
 Wybrany poziom zmienia etykietę na stronie; nie jest przekazywany do Stripe. Każde CTA zakupowe pobiera ten sam adres z konfiguracji. Nie wykonano rzeczywistego zakupu.
 
-## Dane wymagające uzupełnienia
+## Opinie i dokumenty
 
-W `src/config.js` wyszukaj `UZUPEŁNIJ`: imię i nazwisko prowadzącej, biografia, kwalifikacje, doświadczenie, osobisty cytat; autentyczne opinie i ewentualne wyniki; regulamin, polityka prywatności, kontakt oraz dane firmy. Regulamin powinien określać rzeczywiste zasady rezygnacji, płatności i nieobecności. Puste dane prawne otwierają wyraźnie opisane dialogi, nie fikcyjne dokumenty. Nie dodano trackerów ani formularzy zbierających dane.
+- `src/testimonials.js`: osiem autentycznych wiadomości dostarczonych przez organizatorkę, bez dopisywania nazwisk. Pełna transkrypcja i oryginalny obraz dostępne w dialogu.
+- `public/images/reviews/`: zoptymalizowane wersje WebP dostarczonych PNG.
+- `src/regulamin.html`: treść regulaminu z dostarczonego DOCX, wraz z formularzem zgody rodzica. Linie formularza są miejscem na dane uczestnika, nie brakującymi danymi organizatora.
+- `src/polityka-prywatnosci.html`: treść dostarczonej polityki z uzupełnionym e-mailem, datą z dokumentu oraz informacjami o aktualnym kodzie strony (bez trackerów i zapisywania cookies w kodzie, płatność na zewnętrznym Stripe).
+- `src/styles/refinement.css`: Instagram, spójne gwiazdki SVG, responsywne opinie.
+- `src/styles/legal.css`: podstrony dokumentów i wydruk.
+
+Polityka wymaga odpowiedzi organizatorki przed publikacją: platformy zajęć, przechowywanie materiałów i nagrań, podstawa prawna nagrywania, faktyczni dostawcy i transfery danych, ewentualny newsletter/marketing oraz profilowanie. Robocze zapisy dotyczące tych kwestii pochodzą z dostarczonego dokumentu; nie zastąpiono ich wymyślonymi informacjami. Pozostałe dane firmy, biografia, opinie i regulamin są uzupełnione.
+
+Opłata miesięczna i okres wypowiedzenia na stronie odpowiadają § 5 i § 8 dostarczonego regulaminu. Warunki oraz linki są widoczne przy ofercie. Konfiguracja zgód i cyklicznych płatności w zewnętrznym panelu Stripe nie była zmieniana ani testowana zakupem.
 
 ## Zdjęcia
 

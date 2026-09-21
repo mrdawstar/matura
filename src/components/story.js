@@ -1,5 +1,6 @@
-import { course, teacher, testimonials, results } from "../config.js";
-import { eyebrow, purchase, arrow, check, esc } from "./ui.js";
+import { testimonials } from "../testimonials.js";
+import { course, teacher } from "../config.js";
+import { eyebrow, purchase, arrow, check, esc, star, sparkle } from "./ui.js";
 import { Worksheet, Feedback, Speaking } from "./materials.js";
 
 export function Story() {
@@ -10,7 +11,10 @@ export function Story() {
       "Wiesz, czego spodziewać się w arkuszu.",
     ],
     ["Znasz słowa, ale trudno Ci mówić.", "Ćwiczysz mówienie, krok po kroku."],
-    ["Pisanie zajmuje Ci wieczność.", "Piszesz i wiesz, co poprawić."],
+    [
+      "Pisanie zajmuje Ci wieczność.",
+      "Znasz schematy wypowiedzi i wiesz, jak zdobywać punkty za pisanie.",
+    ],
     ["Wciąż wracają te same błędy.", "Rozumiesz błędy dzięki feedbackowi."],
     ["Kolejny arkusz? Może jutro.", "Regularność zastępuje odkładanie."],
   ];
@@ -18,7 +22,7 @@ export function Story() {
     <div class="container problem-layout">
       <div class="problem-heading sticky-heading reveal">
         ${eyebrow("01", "BRZMI ZNAJOMO?")}
-        <h2>Dużo materiału. <br>Mało pewności, <br><span class="purple ink-underline">co dalej.</span></h2>
+        <h2>Dużo materiału, <br>mało pewności. <br><span class="purple ink-underline">Co dalej?</span></h2>
         <p>Nie musisz ogarniać wszystkiego samodzielnie. Potrzebujesz planu, praktyki i kogoś, kto Cię poprowadzi.</p>
         <span class="handwritten margin-note">Spokojnie. Da się to poukładać.</span>
       </div>
@@ -33,7 +37,7 @@ export function Story() {
           )
           .join("")}
         </ol>
-        <p class="sheet-note reveal"><span class="tiny-note-star" aria-hidden="true">✳</span> Mniej chaosu. Więcej kroków do przodu.</p>
+        <p class="sheet-note reveal"><span class="tiny-note-star" aria-hidden="true">${star}</span> Mniej chaosu. Więcej kroków do przodu.</p>
       </div>
     </div>
   </section>`;
@@ -42,7 +46,7 @@ export function Story() {
 export function Program() {
   const steps = [
     [
-      "Sprawdzamy, gdzie jesteś",
+      "Sprawdzamy, gdzie teraz jesteś",
       "Zaczynamy od sprawdzenia poziomu i Twoich potrzeb. To punkt wyjścia do wspólnej pracy.",
     ],
     [
@@ -72,7 +76,7 @@ export function Program() {
     [
       "20",
       "Angielski w praktyce",
-      "Speaking, słownictwo lub gramatyka w kontekście.",
+      "Mówienie, słuchanie, słownictwo i gramatyka w kontekście.",
     ],
     [
       "10",
@@ -155,26 +159,26 @@ export function Value() {
     <div class="value-bottom reveal"><p>${check} Regularne prace domowe <span>+</span> materiały <span>+</span> wskazówki do dalszej nauki</p>${purchase("Chcę tak się uczyć")}</div>
   </div></section>
   <section class="beyond-section"><div class="container beyond-inner">
-    <div class="beyond-heading reveal"><p class="eyebrow">MATURA TO POCZĄTEK</p><h2>Angielski zostaje. <br><span class="purple">Dużo dłużej niż wynik.</span></h2><span class="beyond-star" aria-hidden="true">✳</span></div>
-    <div class="beyond-content reveal"><p>Na wyjeździe. Na studiach. W pierwszej pracy. Uczysz się języka, z którego naprawdę korzystasz.</p><div class="word-tags"><span>swobodne rozmowy ↗</span><span>podróże</span><span>studia za granicą</span><span>filmy bez napisów</span><span>nowe możliwości</span></div></div>
+    <div class="beyond-heading reveal"><p class="eyebrow">MATURA TO POCZĄTEK</p><h2>Angielski zostaje. <br><span class="purple">Dużo dłużej niż wynik.</span></h2><span class="beyond-star" aria-hidden="true">${star}</span></div>
+    <div class="beyond-content reveal"><p>Na wyjeździe. Na studiach. W pierwszej pracy. Uczysz się języka, z którego naprawdę korzystasz również po egzaminie.</p><div class="word-tags"><span>swobodne rozmowy ↗</span><span>podróże</span><span>studia za granicą</span><span>filmy bez napisów</span><span>nowe możliwości</span></div></div>
   </div></section>`;
 }
 
 export function Teacher() {
   return `<section id="prowadzaca" class="section teacher-section"><div class="container teacher-grid">
-    <div class="teacher-visual reveal"><div class="teacher-photo"><img src="${course.aboutImage}" alt="Prowadząca kurs uśmiechająca się podczas pracy z laptopem" width="1300" height="1733" loading="lazy"></div><span class="teacher-sticker">Po Twojej stronie.<span aria-hidden="true">✳</span></span><span class="handwritten teacher-note">Najpierw człowiek. <br>Potem podręcznik.</span></div>
+    <div class="teacher-visual reveal"><div class="teacher-photo"><img src="${course.aboutImage}" alt="Prowadząca kurs uśmiechająca się podczas pracy z laptopem" width="1300" height="1733" loading="lazy"></div><span class="teacher-sticker">Po Twojej stronie.<span aria-hidden="true">${star}</span></span><span class="handwritten teacher-note">Najpierw człowiek. <br>Potem podręcznik.</span></div>
     <div class="teacher-copy reveal">${eyebrow("04", "POZNAJMY SIĘ")}<h2>Poznaj osobę, która pomoże Ci przejść przez przygotowania <span class="purple ink-underline">krok po kroku.</span></h2>
-      <p class="teacher-belief">Angielski to coś więcej niż podręcznik i wynik egzaminu. Skuteczna nauka opiera się na regularności, praktyce, dobrym feedbacku i atmosferze, w której nie boisz się popełniać błędów.</p>
-      <div class="teacher-details"><h3>${esc(teacher.name)}</h3><p>${esc(teacher.bio)}</p><div class="credentials"><div><span>KWALIFIKACJE</span><p>${esc(teacher.qualifications)}</p></div><div><span>DOŚWIADCZENIE</span><p>${esc(teacher.experience)}</p></div></div><p class="teacher-quote">${esc(teacher.quote)}</p></div>
+      <div class="teacher-details"><h3>${esc(teacher.name)}</h3><p>${esc(teacher.bio)}</p><p>${esc(teacher.background)}</p><p>${esc(teacher.approach)}</p></div>
+      <p class="teacher-signature handwritten">Dobry wynik. I angielski na życie.</p>
     </div>
   </div></section>`;
 }
 
 export function SocialProof() {
-  return `<section class="proof-section"><div class="container proof-layout reveal">
-    <span class="proof-quote" aria-hidden="true">“</span>
-    <div class="proof-content"><p class="small-label">PRAWDZIWE HISTORIE. PRAWDZIWE POSTĘPY.</p><h2>Tu będzie miejsce <br>na <span class="purple">Wasze głosy.</span></h2>
-    ${testimonials.length ? `<div class="testimonials">${testimonials.map((t) => `<figure><blockquote>${esc(t.quote)}</blockquote><figcaption>${esc(t.name)} · ${esc(t.context)}</figcaption></figure>`).join("")}</div>` : '<p class="proof-empty">Opinie uczestników pojawią się tutaj po ich otrzymaniu i za zgodą autorów. Na razie poznaj sposób pracy i sprawdź, czy ten kurs jest dla Ciebie.</p>'}
-    ${results.length ? `<div class="results">${results.map((r) => `<p><strong>${esc(r.value)}</strong>${esc(r.label)}</p>`).join("")}</div>` : ""}</div>
-  </div></section>`;
+  return `<section id="opinie" class="proof-section" aria-labelledby="opinie-title"><div class="container">
+ <div class="reviews-heading reveal"><div><p class="small-label">WIADOMOŚCI OD KURSANTEK</p><h2 id="opinie-title">Małe kroki. <br><span class="purple">Wielkie „udało się”.</span></h2></div><p>Więcej pewności, mniej stresu i angielski, który zaczyna mieć sens. Zobacz, co piszą o naszych zajęciach.</p></div>
+ <div class="reviews-toolbar"><span>Przesuń i poznaj kolejne historie <span aria-hidden="true">↔</span></span><div class="reviews-controls"><button type="button" data-review-prev aria-label="Poprzednia opinia" aria-controls="reviews-track">${arrow}</button><span class="reviews-count" aria-live="polite" aria-atomic="true">1 / ${testimonials.length}</span><button type="button" data-review-next aria-label="Następna opinia" aria-controls="reviews-track">${arrow}</button></div></div>
+ <div class="reviews-track" id="reviews-track" tabindex="0" role="region" aria-label="Opinie kursantek — przewijaj strzałkami lub przesuń palcem">${testimonials.map((t, i) => `<figure class="review-card" role="group" aria-label="Opinia ${i + 1} z ${testimonials.length}"><figcaption><span class="review-index">0${i + 1}</span><strong>${esc(t.title)}</strong>${sparkle}</figcaption><blockquote class="review-excerpt">„${esc(t.quote.length > 210 ? t.quote.slice(0, t.quote.lastIndexOf(" ", 210)) + "…" : t.quote)}”</blockquote><button type="button" class="review-image" data-review-open="${i}" aria-label="Otwórz pełną opinię: ${esc(t.title)}"><img src="/images/reviews/${t.id}.webp" alt="${esc(t.quote)}" width="${t.width}" height="${t.height}" style="aspect-ratio:${t.width}/${t.height}" loading="lazy"></button><button type="button" class="review-source" data-review-open="${i}">Zobacz całą wiadomość ↗</button></figure>`).join("")}</div>
+ <p class="reviews-note">Indywidualne doświadczenia kursantek. Wynik egzaminu zależy także od własnej pracy i zaangażowania.</p>
+ </div><dialog id="review-dialog" aria-labelledby="review-dialog-title"><button class="dialog-close" aria-label="Zamknij opinię" autofocus>×</button><h2 id="review-dialog-title"></h2><img id="review-original" alt=""><p id="review-transcript"></p></dialog></section>`;
 }
