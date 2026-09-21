@@ -393,4 +393,16 @@ svg.decor-star {
     font-size: 14px;
   }
 }
-body:has(dialog[open]) {overflow:hidden}
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+.reviews-track {
+  position: relative;
+  scrollbar-width: none;
+}
+.reviews-track::-webkit-scrollbar {
+  display: none;
+}
+.review-card:last-child {
+  scroll-snap-align: start;
+}

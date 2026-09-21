@@ -36,7 +36,7 @@ export const course = {
 export const instagramUrl =
   "https://www.instagram.com/nika.wise?igsh=MWhjYXg2YWo1NG4wdQ%3D%3D&utm_source=qr";
 export const teacher = {
-  name: "Veronika Bubnova",
+  name: "Veronika Wise",
   bio: "Języki obce i komunikacja międzynarodowa od zawsze były ogromną częścią mojego życia. Od kilku lat pomagam kursantom mówić swobodnie, pewnie i bez strachu przed popełnianiem błędów.",
   background:
     "Ukończyłam studia filologiczne i lingwistyczne, znam 6 języków obcych i pracowałam jako tłumaczka międzynarodowa oraz stewardessa. Wiem, jak wiele daje angielski, z którego naprawdę potrafisz korzystać.",

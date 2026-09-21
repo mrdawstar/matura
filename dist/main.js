@@ -110,61 +110,103 @@ if ("IntersectionObserver" in window) {
   stickyObserver.observe(document.querySelector(".hero-actions"));
 }
 
-// Native scroll snapping works with touch, trackpads and keyboard controls.
+// Three copies let native touch/trackpad scrolling loop seamlessly in both directions.
 const reviewsTrack = document.querySelector(".reviews-track");
+const originals = [...reviewsTrack.querySelectorAll(".review-card")];
+const count = originals.length;
+function copyReviews() {
+  return originals.map((card) => {
+    const copy = card.cloneNode(true);
+    copy.setAttribute("aria-hidden", "true");
+    copy.querySelectorAll("button").forEach((button) => (button.tabIndex = -1));
+    return copy;
+  });
+}
+reviewsTrack.prepend(...copyReviews());
+reviewsTrack.append(...copyReviews());
 const reviewCards = [...reviewsTrack.querySelectorAll(".review-card")];
-const reviewPrev = document.querySelector("[data-review-prev]");
-const reviewNext = document.querySelector("[data-review-next]");
-let activeReview = 0;
-function reviewPosition(card) {
-  return Math.min(
-    card.offsetLeft - reviewCards[0].offsetLeft,
-    reviewsTrack.scrollWidth - reviewsTrack.clientWidth,
-  );
+const position = (index) =>
+  reviewCards[index].offsetLeft - reviewCards[0].offsetLeft;
+const step = () => position(1);
+let settling;
+let touching = false;
+function jump(left) {
+  reviewsTrack.style.scrollSnapType = "none";
+  reviewsTrack.scrollTo({ left, behavior: "instant" });
+  requestAnimationFrame(() => {
+    reviewsTrack.style.scrollSnapType = "";
+  });
 }
-function updateReviewControls() {
-  activeReview = reviewCards.reduce(
-    (best, card, index) =>
-      Math.abs(reviewPosition(card) - reviewsTrack.scrollLeft) <
-      Math.abs(reviewPosition(reviewCards[best]) - reviewsTrack.scrollLeft)
-        ? index
-        : best,
-    0,
-  );
-  reviewPrev.disabled = reviewsTrack.scrollLeft < 2;
-  reviewNext.disabled =
-    reviewsTrack.scrollLeft >=
-    reviewsTrack.scrollWidth - reviewsTrack.clientWidth - 2;
-  document.querySelector(".reviews-count").textContent =
-    `${activeReview + 1} / ${reviewCards.length}`;
+function normalizeReviews() {
+  if (touching) return;
+  const cycle = step() * count;
+  if (reviewsTrack.scrollLeft < cycle - 1)
+    jump(reviewsTrack.scrollLeft + cycle);
+  else if (reviewsTrack.scrollLeft >= cycle * 2 - 1)
+    jump(reviewsTrack.scrollLeft - cycle);
 }
-function goToReview(index) {
-  const card =
-    reviewCards[Math.max(0, Math.min(index, reviewCards.length - 1))];
+function moveReview(direction) {
+  normalizeReviews();
+  const index = Math.round(reviewsTrack.scrollLeft / step());
   reviewsTrack.scrollTo({
-    left: reviewPosition(card),
+    left: position(index + direction),
     behavior: reduceMotion.matches ? "instant" : "smooth",
   });
 }
-reviewPrev.addEventListener("click", () => goToReview(activeReview - 1));
-reviewNext.addEventListener("click", () => goToReview(activeReview + 1));
-reviewsTrack.addEventListener("scroll", updateReviewControls, {
-  passive: true,
-});
+document
+  .querySelector("[data-review-prev]")
+  .addEventListener("click", () => moveReview(-1));
+document
+  .querySelector("[data-review-next]")
+  .addEventListener("click", () => moveReview(1));
+reviewsTrack.addEventListener(
+  "scroll",
+  () => {
+    clearTimeout(settling);
+    settling = setTimeout(normalizeReviews, 160);
+  },
+  { passive: true },
+);
+reviewsTrack.addEventListener("scrollend", normalizeReviews);
+reviewsTrack.addEventListener(
+  "touchstart",
+  () => {
+    touching = true;
+  },
+  { passive: true },
+);
+reviewsTrack.addEventListener(
+  "touchend",
+  () => {
+    touching = false;
+    clearTimeout(settling);
+    settling = setTimeout(normalizeReviews, 160);
+  },
+  { passive: true },
+);
+reviewsTrack.addEventListener(
+  "touchcancel",
+  () => {
+    touching = false;
+    normalizeReviews();
+  },
+  { passive: true },
+);
 reviewsTrack.addEventListener("keydown", (event) => {
-  const keys = {
-    ArrowLeft: activeReview - 1,
-    ArrowRight: activeReview + 1,
-    Home: 0,
-    End: reviewCards.length - 1,
-  };
-  if (event.key in keys) {
+  if (event.target !== reviewsTrack) return;
+  if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
     event.preventDefault();
-    goToReview(keys[event.key]);
+    moveReview(event.key === "ArrowLeft" ? -1 : 1);
   }
 });
-window.addEventListener("resize", updateReviewControls);
-updateReviewControls();
+let trackWidth = reviewsTrack.clientWidth;
+new ResizeObserver(() => {
+  if (trackWidth !== reviewsTrack.clientWidth) {
+    trackWidth = reviewsTrack.clientWidth;
+    jump(position(count));
+  }
+}).observe(reviewsTrack);
+jump(position(count));
 
 const reviewDialog = document.querySelector("#review-dialog");
 document.querySelectorAll("[data-review-open]").forEach((button) =>
@@ -193,3 +235,5 @@ reviewDialog.addEventListener("click", (event) => {
       reviewDialog.close();
   }
 });
+
+await import("./return-position.js");
