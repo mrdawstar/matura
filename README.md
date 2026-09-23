@@ -28,7 +28,7 @@ Wybrany poziom zmienia etykietę na stronie; nie jest przekazywany do Stripe. Ka
 - `src/testimonials.js`: osiem autentycznych wiadomości dostarczonych przez organizatorkę, bez dopisywania nazwisk. Pełna transkrypcja i oryginalny obraz dostępne w dialogu.
 - `public/images/reviews/`: zoptymalizowane wersje WebP dostarczonych PNG.
 - `src/regulamin.html`: treść regulaminu z dostarczonego DOCX, wraz z formularzem zgody rodzica. Linie formularza są miejscem na dane uczestnika, nie brakującymi danymi organizatora.
-- `src/polityka-prywatnosci.html`: treść dostarczonej polityki z uzupełnionym e-mailem, datą z dokumentu oraz informacjami o aktualnym kodzie strony (bez trackerów i zapisywania cookies w kodzie, płatność na zewnętrznym Stripe).
+- `src/polityka-prywatnosci.html`: treść dostarczonej polityki z uzupełnionym e-mailem, datą z dokumentu oraz informacjami o aktualnym kodzie strony (Meta Pixel po zgodzie marketingowej, płatność na zewnętrznym Stripe).
 - `src/styles/refinement.css`: Instagram, spójne gwiazdki SVG, responsywne opinie.
 - `src/styles/legal.css`: podstrony dokumentów i wydruk.
 
@@ -39,3 +39,7 @@ Opłata miesięczna i okres wypowiedzenia na stronie odpowiadają § 5 i § 8 do
 ## Zdjęcia
 
 Zdjęcie w hero: dostarczony `ChatGPT Image Sep 18, 2026, 07_37_19 PM.png`, przekonwertowany do WebP z zachowaniem przezroczystości. Portret nie był regenerowany ani retuszowany; transparentne marginesy kadruje CSS. Drugie zdjęcie: dostarczony `IMG_3099.png`.
+
+## Meta Pixel
+
+`src/marketing.js` obsługuje pixel `1421858570043345` i zdarzenie `PageView` na wszystkich trzech stronach. Skrypt Meta nie jest pobierany przed zgodą. Wybór jest zapamiętywany na 180 dni, a ustawienia można zmienić w stopce. Nie dodano bezwarunkowego obrazka noscript, który omijałby zgodę. Automatyczne zdarzenia są wyłączone w kodzie. Test przeglądarkowy przechwytuje żądania Meta i sprawdza zgodę, odmowę, zapamiętanie wyboru i wycofanie; nie potwierdza odbioru zdarzeń w panelu Meta.
